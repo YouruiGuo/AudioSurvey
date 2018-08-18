@@ -82,11 +82,17 @@ the account verification message.)`,
     .intercept({name: 'UsageError'}, 'invalid')
     .fetch();
 
-    var AudioSequence = await sails.helpers.randomGenerateList();
-    //await User.update(newUserRecord.id).set({
-    //  sequence: AudioSequence
-    //});
-    //sails.log(AudioSequence);
+    numTotalTrain = 2;
+    numTotalTest = 1;
+    var seq = await sails.helpers.randomGenerateList(numTotalTrain, numTotalTest);
+    sails.log(seq[0], seq[1]);
+    var sTrain = seq[0].join();
+    var sTest = seq[1].join();
+    await User.update(newUserRecord.id).set({
+      sequenceTrain: sTrain,
+      sequenceTest: sTest
+    });
+    sails.log(sTrain, sTest);
 
     // If billing feaures are enabled, save a new customer entry in the Stripe API.
     // Then persist the Stripe customer id in the database.

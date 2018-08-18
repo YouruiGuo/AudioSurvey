@@ -51,9 +51,12 @@ module.exports = {
 
 
     }
-    sails.log(sequenceTrain, sequenceTest);
+    //sails.log(sequenceTrain, sequenceTest);
     
-    return exits.success(sequenceTrain, sequenceTest);
+    return exits.success({
+      0: sequenceTrain,
+      1: sequenceTest
+    });
   }
 
 };

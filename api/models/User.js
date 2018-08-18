@@ -8,10 +8,6 @@ module.exports = {
 
   attributes: {
 
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
     emailAddress: {
       type: 'string',
       required: true,
@@ -154,15 +150,28 @@ email status until they click the link in the confirmation email.`
       example: 1502844074211
     },
 
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-    // n/a
+    sequenceTrain: {
+      type: 'string',
+      description: 'the music selected randomly with its id stored in sequence, for training',
+      example: '12345, 23456, 66366'
+    },
 
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    // n/a
+    sequenceTest: {
+      type: 'string',
+      description: 'the music selected randomly with its id stored in sequence, for testing',
+      example: '12345, 23456, 66366'
+    },
+
+    currentPlay: {
+      type: 'number',
+      description: 'the audio that currently plays, it should be the index of audio in sequence'
+    },
+
+    feedbacks: {
+      collection: 'userFeedback',
+      via: 'userID'
+    }
+
 
   },
 
