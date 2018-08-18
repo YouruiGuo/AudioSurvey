@@ -24,7 +24,7 @@ module.exports = {
         isTraining: {
             type: 'boolean',
             description: 'whether the music is in training set or testing set',
-        }
+        },
 
         userID: {
             model: 'User',

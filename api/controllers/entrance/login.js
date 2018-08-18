@@ -106,7 +106,7 @@ and exposed as \`req.me\`.)`
 
     // Modify the active session instance.
     this.req.session.userId = userRecord.id;
-
+    var AudioSequence = await sails.helpers.randomGenerateList(2,1);
     // Send success response (this is where the session actually gets persisted)
     return exits.success();
 

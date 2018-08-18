@@ -82,6 +82,12 @@ the account verification message.)`,
     .intercept({name: 'UsageError'}, 'invalid')
     .fetch();
 
+    var AudioSequence = await sails.helpers.randomGenerateList();
+    //await User.update(newUserRecord.id).set({
+    //  sequence: AudioSequence
+    //});
+    //sails.log(AudioSequence);
+
     // If billing feaures are enabled, save a new customer entry in the Stripe API.
     // Then persist the Stripe customer id in the database.
     if (sails.config.custom.enableBillingFeatures) {
