@@ -13,7 +13,9 @@ module.exports = {
 
 
   exits: {
-
+  	success: {
+      viewTemplatePath: 'pages/usertest',
+    }
   },
 
 
@@ -21,6 +23,7 @@ module.exports = {
 
   	var user = await User.findOne({id: this.req.me.id});
   	var cPlay = user.currentPlay;
+
   	var istrain = false;
   	var mID;
   	if (cPlay < user.sequenceTrain.split(",").length) {
@@ -32,20 +35,31 @@ module.exports = {
   		istrain = false;
   	}
 
-  	sql = "select distinct trueClass from audio";
-    valuesToEscape = [];
-    var cl = await datastore.sendNativeQuery(sql, valuesToEscape); //the result from the sql query
-    //sails.log(num);
-    classes = cl.rows; 
-    var classlist = [];
-    for (var i = classes.length - 1; i >= 0; i--) {
-      classlist[i] = classes[i].trueClass;
-    }
+  	await User.update({id: this.req.me.id}).set({
+  		currentPlayID: mID
+  	});
   	
-    return exits.success({
-    	musicID: mID,
-    	classes: classlist
-    });
+  	if (!user.classList) {
+  		sql = "select distinct trueClass from audio";
+	    valuesToEscape = [];
+	    datastore = sails.getDatastore();
+	    var cl = await datastore.sendNativeQuery(sql, valuesToEscape); //the result from the sql query
+	    
+	    classes = cl.rows; 
+	    var classlist = [];
+	    for (var i = classes.length - 1; i >= 0; i--) {
+	      classlist[i] = classes[i].trueClass;
+	    }
+	    await User.update({id: this.req.me.id}).set({
+	    	classList: classlist.join()
+	    });
+  	}
+
+  	
+    sails.log(mID);
+  	//sails.log(classlist);
+
+    return exits.success();
 
   }
 

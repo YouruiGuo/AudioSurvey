@@ -8,8 +8,12 @@ module.exports = {
 
 
   inputs: {
-  	predictedClass: 'string',
-  	description: 'userFeedback'
+  	
+  	predictedClass: {
+  		type: 'string',
+  		description: 'userFeedback'
+  	},
+  	
   },
 
 
@@ -52,7 +56,9 @@ module.exports = {
 	  	
   	}
 
-  	if (cPlay > numTest+numTrain) {}
+  	if (cPlay > numTest+numTrain) {
+  		//TODO: Redirect
+  	}
 
     return exits.success();
 

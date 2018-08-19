@@ -167,10 +167,22 @@ email status until they click the link in the confirmation email.`
       description: 'the audio that currently plays, it should be the index of audio in sequence'
     },
 
+    currentPlayID: {
+      type: 'string',
+      description: 'the audio file that currently plays',
+      example: 'T45045'
+    },
+
     feedbacks: {
       collection: 'userFeedback',
       via: 'userID'
-    }
+    },
+
+    classList: {
+      type: 'string',
+      description: 'the list of classes',
+      example: 'Europe, Asian, African'
+    },
 
 
   },
