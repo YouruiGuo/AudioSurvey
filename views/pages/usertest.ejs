@@ -1,4 +1,22 @@
-<div> id = "usertest">
-	<span slot="default">{{ me.currentPlayID}}</span>
-	
+<div id = "usertest" v-cloak>
+
+	<div class="container">
+
+
+		<div class="input-group">
+		  <select class="custom-select" id="inputGroup" aria-label="Example select with button addon">
+		  	<option selected> Choose... </option>
+		    <%for (var i = 0; i < me.classList.split(",").length; i++) {%>
+					<option value=<%= me.classList.split(",")[i] %>><%= me.classList.split(",")[i] %></option>
+			<% } %>
+		  </select>
+		  <div class="input-group-append">
+		    <button class="btn btn-outline-secondary" type="button">Submit</button>
+		  </div>
+		</div>
+		
+
+	</div>	
+
 </div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
