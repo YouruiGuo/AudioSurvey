@@ -20,7 +20,10 @@ module.exports = {
   exits: {
 
       success: {
-
+        viewTemplatePath: 'pages/usertest',
+      }
+      redirect: {
+        viewTemplatePath: '/welcome'
       }
   },
 
@@ -29,12 +32,11 @@ module.exports = {
 
     sails.log("here");
 
-  	var user = await User.find({id: this.req.me.id}).limit(1);
+  	var u = await User.find({id: this.req.me.id}).limit(1);
+    var user = u[0];
     var cPlay = user.currentPlay;
-    await User.update({id: this.req.me.id}).set({
-  	  	currentPlay: cPlay+1
-  	});
-  	cPlay = cPlay+1;
+    sails.log(user.fullName);
+    
 
   	var istrain = false;
   	var mID;
@@ -49,22 +51,26 @@ module.exports = {
   		istrain = false;
   	}
 
-  	if (cPlay != 0) {
-  		var audioInfo = await Audio.findOne({musicID: mID});
-	  	await UserFeedback.create({
-	  		musicID: mID,
-	  		trueClass: audioInfo.trueClass,
-	  		isTraining: istrain,
-	  		predictedClass: inputs.predictedClass,
-	  		//TODO: user
-	  	});
+
+		var au = await Audio.find({musicID: mID}).limit(1);
+    var audioInfo = au[0];
+  	await UserFeedback.create({
+  		musicID: mID,
+  		trueClass: audioInfo.trueClass,
+  		isTraining: istrain,
+  		predictedClass: inputs.predictedClass,
+  		userID: this.req.me.id
+  	});
 	  	
-  	}
+    await User.update({id: this.req.me.id}).set({
+        currentPlay: cPlay+1
+    });
+    cPlay = cPlay+1;
 
-  	if (cPlay > numTest+numTrain) {
-  		//TODO: Redirect
+  	if (cPlay >= numTest+numTrain) {
+  		return exits.redirect("/welcome");
   	}
-
+    
     return exits.success();
 
   }
