@@ -22,9 +22,7 @@ module.exports = {
       success: {
         viewTemplatePath: 'pages/usertest',
       }
-      redirect: {
-        viewTemplatePath: '/welcome'
-      }
+      
   },
 
 
@@ -68,7 +66,7 @@ module.exports = {
     cPlay = cPlay+1;
 
   	if (cPlay >= numTest+numTrain) {
-  		return exits.redirect("/welcome");
+  		return this.res.redirect("/result");
   	}
     
     return exits.success();
