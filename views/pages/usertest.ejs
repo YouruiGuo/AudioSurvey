@@ -1,22 +1,24 @@
 <div id = "usertest" v-cloak>
 
+
+
 	<div class="container">
-
-
-		<div class="input-group">
-		  <select class="custom-select" id="inputGroup" aria-label="Example select with button addon">
-		  	<option selected> Choose... </option>
+	  	<hr/>
+	  	<form action="updateUserFeedback">
 		    <%for (var i = 0; i < me.classList.split(",").length; i++) {%>
-					<option value=<%= me.classList.split(",")[i] %>><%= me.classList.split(",")[i] %></option>
+					<input type="radio" name="predictedClass" value="<%= me.classList.split(",")[i] %>"><%= me.classList.split(",")[i] %><br>
 			<% } %>
-		  </select>
-		  <div class="input-group-append">
-		    <button class="btn btn-outline-secondary" type="button">Submit</button>
-		  </div>
-		</div>
-		
+			
+	        <input type="submit"class="btn-dark btn-lg btn-block">Submit</input>
+	        
 
-	</div>	
+	  	</form>
+		
+	
+
+	</div>
+	
+
 
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

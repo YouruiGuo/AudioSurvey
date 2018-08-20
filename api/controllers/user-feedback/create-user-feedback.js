@@ -26,12 +26,13 @@ module.exports = {
 
   	var istrain = false;
   	var mID;
+  	var numTrain = user.sequenceTrain.split(",").length;
   	if (cPlay < user.sequenceTrain.split(",").length) {
   		mID = user.sequenceTrain.split(",")[cPlay];
   		istrain = true;
   	}
   	else{
-  		mID = user.sequenceTest.split(",")[cPlay];
+  		mID = user.sequenceTest.split(",")[cPlay-numTrain];
   		istrain = false;
   	}
 
@@ -55,8 +56,7 @@ module.exports = {
 	    });
   	}
 
-  	
-    sails.log(mID);
+    //sails.log(mID);
   	//sails.log(classlist);
 
     return exits.success();

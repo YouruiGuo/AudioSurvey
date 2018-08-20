@@ -19,17 +19,22 @@ module.exports = {
 
   exits: {
 
+      success: {
+
+      }
   },
 
 
   fn: async function (inputs, exits) {
 
-	var user = await User.findOne({id: this.req.me.id});
-  	var cPlay = user.currentPlay;
-  	await User.update({id: this.req.me.id}).set({
-	  	currentPlay: cPlay+1
-	});
-	cPlay = cPlay+1;
+    sails.log("here");
+
+  	var user = await User.find({id: this.req.me.id}).limit(1);
+    var cPlay = user.currentPlay;
+    await User.update({id: this.req.me.id}).set({
+  	  	currentPlay: cPlay+1
+  	});
+  	cPlay = cPlay+1;
 
   	var istrain = false;
   	var mID;
@@ -45,8 +50,8 @@ module.exports = {
   	}
 
   	if (cPlay != 0) {
-  		var audioInfo = await audio.findOne({musicID: mID});
-	  	await userFeedback.create({
+  		var audioInfo = await Audio.findOne({musicID: mID});
+	  	await UserFeedback.create({
 	  		musicID: mID,
 	  		trueClass: audioInfo.trueClass,
 	  		isTraining: istrain,
