@@ -4,20 +4,39 @@
 
 	<div class="container">
 	  	<hr/>
-	  	
-  		<audio controls id="playAudio" src="/audios/<%=me.currentPlayID+'.mp3'%>">
-  			
-  		</audio>
-	  	<form action="updateUserFeedback">
-		    <%for (var i = 0; i < me.classList.split(",").length; i++) {%>
-					<input type="radio" name="predictedClass" value="<%= me.classList.split(",")[i] %>"><%= me.classList.split(",")[i] %><br>
-			<% } %>
-			
-	        <input type="submit"class="btn-dark btn-lg btn-block">Submit</input>
-	        
+	  	<div class="row">
+	  		<div class="col-sm-2"></div>
+	  		<div class="col-sm-8">
+	  			<p>Playing the <%= cPlay+1%> of <%= totalNum%> audio</p>
+	  		</div>
+	  		<div class="col-sm-2"></div>
+	  	</div>
+	  	<div class="row">
+	  		<div class="col-sm-2"></div>
+	  		<div class="col-sm-8">
+	  			<audio controls id="playAudio" src="/audios/<%=mID+'.mp3'%>"></audio>
+	  		</div>
+	  		<div class="col-sm-2"></div>
+	  	</div>
+	  	<div class="row">
+	  		<div class="col-sm-2"></div>
+	  		<div class="col-sm-8">
+	  			<form action="updateUserFeedback">
+				    <%for (var i = 0; i < classList.split(",").length; i++) {%>
+							<input type="radio" name="predictedClass" value="<%= classList.split(",")[i] %>"><%= classList.split(",")[i] %><br>
+					<% } %>
+					
+			        <input type="submit"class="btn-dark btn-lg btn-block"></input>
+			        
 
-	  	</form>
+			  	</form>
 		
+	  		</div>
+	  		<div class="col-sm-2"></div>
+	  	</div>
+	  	
+  		
+	  	
 	
 
 	</div>

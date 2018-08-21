@@ -1,3 +1,35 @@
 <div id = "result" v-cloak>
-	<%=matrix%>
+	<div class="container">
+		<hr/>
+		<div class="rows">
+			<p>Congradulations! You've completed the test! Here is the test result for you!</p>
+			
+		</div>
+		<div class="rows">
+			<%=accuracy%>
+		</div>
+		<div class="rows">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<%for (var i = 0; i < matrix[0].length; i++) {%>
+							<th scope="col">aaa</th>
+						<%}%>
+					</tr>
+				</thead>
+				<tbody>
+					<%for (var i = 0; i < matrix[0].length; i++) {%>
+						<tr>
+							<th scope="row">1</th>
+							<%for (var j = 0; j < matrix[0].length; j++) {%>
+								<td><%=matrix[i][j]%></td>
+							<%}%>
+						</tr>
+					<%}%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+		
 </div>

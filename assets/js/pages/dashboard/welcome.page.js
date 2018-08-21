@@ -22,13 +22,5 @@ parasails.registerPage('welcome', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
 
-    clickOpenDashboardModalButton: async function() {
-      this.dashboardModalVisible = true;
-    },
-
-    closeDashboardModal: async function() {
-      this.dashboardModalVisible = false;
-    },
-
   }
 });

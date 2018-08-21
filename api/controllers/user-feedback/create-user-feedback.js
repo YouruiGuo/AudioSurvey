@@ -47,27 +47,44 @@ module.exports = {
   		currentPlayID: mID
   	});
   	sails.log(mID);
+
+    var au = await Audio.find({musicID: mID}).limit(1);
+    var audioInfo = au[0];
+    trueClass = audioInfo.trueClass;
+
+  	var classl;
   	
   	if (!user.classList) {
   		sql = "select distinct trueClass from audio";
 	    valuesToEscape = [];
 	    datastore = sails.getDatastore();
 	    var cl = await datastore.sendNativeQuery(sql, valuesToEscape); //the result from the sql query
-	    
-	    classes = cl.rows; 
 	    var classlist = [];
+	    classes = cl.rows; 
+	    
 	    for (var i = classes.length - 1; i >= 0; i--) {
 	      classlist[i] = classes[i].trueClass;
 	    }
+	    classl = classlist.join();
 	    await User.update({id: this.req.me.id}).set({
 	    	classList: classlist.join()
 	    });
+  	}
+  	else{
+  		classl = user.classList;
   	}
 
     //sails.log(mID);
   	//sails.log(classlist);
 
-    return exits.success();
+    return exits.success({
+    	mID: mID,
+    	classList: classl,
+      cPlay: cPlay,
+      totalNum: numTrain+numTest,
+      isTrain: istrain,
+      trueClass: trueClass
+    });
 
   }
 
