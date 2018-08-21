@@ -4,6 +4,10 @@
 
 	<div class="container">
 	  	<hr/>
+	  	
+  		<audio controls id="playAudio" src="/audios/<%=me.currentPlayID+'.mp3'%>">
+  			
+  		</audio>
 	  	<form action="updateUserFeedback">
 		    <%for (var i = 0; i < me.classList.split(",").length; i++) {%>
 					<input type="radio" name="predictedClass" value="<%= me.classList.split(",")[i] %>"><%= me.classList.split(",")[i] %><br>

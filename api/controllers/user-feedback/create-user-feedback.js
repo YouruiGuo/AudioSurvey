@@ -26,7 +26,14 @@ module.exports = {
 
   	var istrain = false;
   	var mID;
+
   	var numTrain = user.sequenceTrain.split(",").length;
+  	var numTest = user.sequenceTest.split(",").length;
+  	sails.log(cPlay);
+  	sails.log(numTest+numTrain);
+  	if (cPlay >= numTrain+numTest) {
+  		return this.res.redirect("/result");
+  	}
   	if (cPlay < user.sequenceTrain.split(",").length) {
   		mID = user.sequenceTrain.split(",")[cPlay];
   		istrain = true;
@@ -39,6 +46,7 @@ module.exports = {
   	await User.update({id: this.req.me.id}).set({
   		currentPlayID: mID
   	});
+  	sails.log(mID);
   	
   	if (!user.classList) {
   		sql = "select distinct trueClass from audio";

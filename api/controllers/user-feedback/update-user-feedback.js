@@ -19,27 +19,22 @@ module.exports = {
 
   exits: {
 
-      success: {
-        viewTemplatePath: 'pages/usertest',
-      }
+      
       
   },
 
 
   fn: async function (inputs, exits) {
 
-    sails.log("here");
-
   	var u = await User.find({id: this.req.me.id}).limit(1);
     var user = u[0];
     var cPlay = user.currentPlay;
-    sails.log(user.fullName);
     
-
   	var istrain = false;
   	var mID;
   	var numTrain = user.sequenceTrain.split(",").length;
   	var numTest = user.sequenceTest.split(",").length;
+
   	if (cPlay < numTrain) {
   		mID = user.sequenceTrain.split(",")[cPlay];
   		istrain = true;
@@ -48,7 +43,6 @@ module.exports = {
   		mID = user.sequenceTest.split(",")[cPlay-numTrain];
   		istrain = false;
   	}
-
 
 		var au = await Audio.find({musicID: mID}).limit(1);
     var audioInfo = au[0];
@@ -61,15 +55,17 @@ module.exports = {
   	});
 	  	
     await User.update({id: this.req.me.id}).set({
-        currentPlay: cPlay+1
+        currentPlay: cPlay+1,
     });
     cPlay = cPlay+1;
-
-  	if (cPlay >= numTest+numTrain) {
-  		return this.res.redirect("/result");
-  	}
+    if (cPlay >= numTest+numTrain) {
+      return this.res.redirect("/result");
+    }
+  	else {
+      return this.res.redirect("/test/");
+    }
     
-    return exits.success();
+    //return exits.success();
 
   }
 
