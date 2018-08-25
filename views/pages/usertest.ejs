@@ -4,6 +4,7 @@
 
 	<div class="container">
 	  	<hr/>
+
 	  	<div class="row">
 	  		<div class="col-sm-2"></div>
 	  		<div class="col-sm-8">
@@ -11,29 +12,73 @@
 	  		</div>
 	  		<div class="col-sm-2"></div>
 	  	</div>
-	  	<div class="row">
+
+		<div class="row">
 	  		<div class="col-sm-2"></div>
 	  		<div class="col-sm-8">
 	  			<audio controls id="playAudio" src="/audios/<%=mID+'.mp3'%>"></audio>
 	  		</div>
 	  		<div class="col-sm-2"></div>
 	  	</div>
-	  	<div class="row">
-	  		<div class="col-sm-2"></div>
-	  		<div class="col-sm-8">
-	  			<form action="updateUserFeedback">
-				    <%for (var i = 0; i < classList.split(",").length; i++) {%>
-							<input type="radio" name="predictedClass" value="<%= classList.split(",")[i] %>"><%= classList.split(",")[i] %><br>
-					<% } %>
-					
-			        <input type="submit"class="btn-dark btn-lg btn-block"></input>
-			        
-
-			  	</form>
-		
+	  	<% if (isTrain) { %>
+	  		
+	  		<div class="row">
+	  			<div class="col-sm-2"></div>
+	  			<div class="col-sm-8">
+	  				<form action="updateUserFeedback" method="post">
+					    <%for (var i = 0; i < classList.split(",").length; i++) {%>
+								<input type="radio" name="predictedClass" data-toggle="modal" data-target="#modal" value="<%= classList.split(",")[i] %>"><%= classList.split(",")[i] %><br>
+						<% } %>
+						<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+				        <button type="submit" class="btn-dark btn-lg btn-block">Next</button>
+				  	</form>
+				  	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLongTitle">Correct answer</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p>The correct answer is: <%= trueClass %></p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+	  			</div>
+	  			<div class="col-sm-2"></div>
 	  		</div>
-	  		<div class="col-sm-2"></div>
-	  	</div>
+
+
+	  	<% } else { %>
+	  		
+		  	<div class="row">
+		  		<div class="col-sm-2"></div>
+		  		<div class="col-sm-8">
+		  			<form action="updateUserFeedback" method="post">
+					    <%for (var i = 0; i < classList.split(",").length; i++) {%>
+								<input type="radio" name="predictedClass" value="<%= classList.split(",")[i] %>"><%= classList.split(",")[i] %><br>
+						<% } %>
+						<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+				        <input type="submit" class="btn-dark btn-lg btn-block"></input>
+				        
+
+				  	</form>
+			
+		  		</div>
+		  		<div class="col-sm-2"></div>
+		  	</div>
+
+
+	  	<% } %>
+	  	 
+
+	  	
 	  	
   		
 	  	

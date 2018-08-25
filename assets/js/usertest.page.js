@@ -15,7 +15,9 @@ parasails.registerPage('usertest', {
 
 	methods: {
 
-
+		handleClick: function(anwser) {
+			
+		}
 		
 
 	}

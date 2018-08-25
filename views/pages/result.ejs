@@ -6,7 +6,7 @@
 			
 		</div>
 		<div class="rows">
-			<%=accuracy%>
+			<p>The accuracy is <%=accuracy%>%. </p> 
 		</div>
 		<div class="rows">
 			<table class="table">
@@ -14,14 +14,14 @@
 					<tr>
 						<th scope="col">#</th>
 						<%for (var i = 0; i < matrix[0].length; i++) {%>
-							<th scope="col">aaa</th>
+							<th scope="col"><%=classList[i]%></th>
 						<%}%>
 					</tr>
 				</thead>
 				<tbody>
 					<%for (var i = 0; i < matrix[0].length; i++) {%>
 						<tr>
-							<th scope="row">1</th>
+							<th scope="row"><%=classList[i]%></th>
 							<%for (var j = 0; j < matrix[0].length; j++) {%>
 								<td><%=matrix[i][j]%></td>
 							<%}%>

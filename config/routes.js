@@ -30,7 +30,7 @@ module.exports.routes = {
   'GET /account/profile':    { action: 'account/view-edit-profile' },
 
   'GET /test':               { action: 'user-feedback/create-user-feedback'},
-  'GET /test/updateUserFeedback':      { action: 'user-feedback/update-user-feedback'},
+  'POST /test/updateUserFeedback':      { action: 'user-feedback/update-user-feedback'},
   'GET /result':              { action: 'user-feedback/view-result'},
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗

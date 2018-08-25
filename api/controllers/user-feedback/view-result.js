@@ -35,12 +35,14 @@ module.exports = {
       matrix[classList.indexOf(re.rows[i].trueClass)][classList.indexOf(re.rows[i].predictedClass)] += 1;
       
     }
+    accuracy = accuracy*100.0 / re.rows.length;
     sails.log(accuracy);
     sails.log(matrix);
     // Respond with view.
     return exits.success({
       accuracy: accuracy,
-      matrix: matrix
+      matrix: matrix,
+      classList: classList
     });
 
   }
