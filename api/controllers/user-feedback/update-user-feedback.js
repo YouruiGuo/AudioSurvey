@@ -54,7 +54,7 @@ module.exports = {
   		predictedClass: inputs.predictedClass,
   		userID: this.req.me.id
   	});
-	  sails.log("here:" mID);  
+	  sails.log("here:" + mID);  
     await User.update({id: this.req.me.id}).set({
         currentPlay: cPlay+1,
     });
