@@ -47,14 +47,14 @@ module.exports = {
 
 		var au = await Audio.find({musicID: mID}).limit(1);
     var audioInfo = au[0];
-  	await UserFeedback.create({
+  	var createdUF = await UserFeedback.create({
   		musicID: mID,
   		trueClass: audioInfo.trueClass,
   		isTraining: istrain,
   		predictedClass: inputs.predictedClass,
   		userID: this.req.me.id
-  	});
-	  sails.log("here:" + mID);  
+  	}).fetch();
+	  sails.log("here:" + createdUF.id);  
     await User.update({id: this.req.me.id}).set({
         currentPlay: cPlay+1,
     });
