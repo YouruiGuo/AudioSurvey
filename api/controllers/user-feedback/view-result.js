@@ -21,7 +21,7 @@ module.exports = {
     var user = await User.findOne({id: this.req.me.id});
     classList = user.classList.split(",");
     datastore = sails.getDatastore();
-    var sql = "select * from userFeedback where userID = $1 and isTraining = 0 and musicID != ''";
+    var sql = "select * from userfeedback where userID = $1 and isTraining = 0 and musicID != ''";
     var valuesToEscape = [user.id];
     var re = await datastore.sendNativeQuery(sql, valuesToEscape);
 

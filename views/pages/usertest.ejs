@@ -16,7 +16,7 @@
 		<div class="row">
 	  		<div class="col-sm-2"></div>
 	  		<div class="col-sm-8">
-	  			<audio controls id="playAudio" src="/audios/<%=mID+'.mp3'%>"></audio>
+	  			<audio controls controlsList="nodownload" id="playAudio" src="/audios/<%=mID+'.mp3'%>"></audio>
 	  		</div>
 	  		<div class="col-sm-2"></div>
 	  	</div>
@@ -30,7 +30,8 @@
 								<input type="radio" name="predictedClass" data-toggle="modal" data-target="#modal" value="<%= classList.split(",")[i] %>"><%= classList.split(",")[i] %><br>
 						<% } %>
 						<input type="hidden" name="_csrf" value="<%= _csrf %>" />
-				        <button type="submit" class="btn-dark btn-lg btn-block">Next</button>
+				        <button id="nextButton" type="submit" class="btn-dark btn-lg btn-block">Next</button>
+
 				  	</form>
 				  	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered" role="document">
@@ -65,7 +66,7 @@
 								<input type="radio" name="predictedClass" value="<%= classList.split(",")[i] %>"><%= classList.split(",")[i] %><br>
 						<% } %>
 						<input type="hidden" name="_csrf" value="<%= _csrf %>" />
-				        <input type="submit" class="btn-dark btn-lg btn-block"></input>
+				        <input id="submitButton" type="submit" class="btn-dark btn-lg btn-block"></input>
 				        
 
 				  	</form>
