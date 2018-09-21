@@ -21,43 +21,27 @@
 	  		<div class="col-sm-2"></div>
 	  	</div>
 	  	<% if (isTrain) { %>
-	  		
+
 	  		<div class="row">
 	  			<div class="col-sm-2"></div>
 	  			<div class="col-sm-8">
 	  				<form action="updateUserFeedback" method="post">
 					    <%for (var i = 0; i < classList.split(",").length; i++) {%>
-								<input type="radio" name="predictedClass" data-toggle="modal" data-target="#modal" value="<%= classList.split(",")[i] %>"><%= classList.split(",")[i] %><br>
+								<input onclick="unhide()" type="radio" name="predictedClass" data-toggle="modal" data-target="#modal" value="<%= classList.split(",")[i] %>"><%= classList.split(",")[i] %><br>
 						<% } %>
 						<input type="hidden" name="_csrf" value="<%= _csrf %>" />
-				        <button id="nextButton" type="submit" class="btn-dark btn-lg btn-block">Next</button>
+						<p id = "answer">Correct answer is <%= trueClass%> </p>
+				        <button id="nextButton" type="submit" onclick = "hide()" class="btn-dark btn-lg btn-block">Next</button>
 
 				  	</form>
-				  	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLongTitle">Correct answer</h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<p>The correct answer is: <%= trueClass %></p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
+
 	  			</div>
 	  			<div class="col-sm-2"></div>
 	  		</div>
 
 
 	  	<% } else { %>
-	  		
+
 		  	<div class="row">
 		  		<div class="col-sm-2"></div>
 		  		<div class="col-sm-8">
@@ -67,27 +51,39 @@
 						<% } %>
 						<input type="hidden" name="_csrf" value="<%= _csrf %>" />
 				        <input id="submitButton" type="submit" class="btn-dark btn-lg btn-block"></input>
-				        
+
 
 				  	</form>
-			
+
 		  		</div>
 		  		<div class="col-sm-2"></div>
 		  	</div>
 
 
 	  	<% } %>
-	  	 
 
-	  	
-	  	
-  		
-	  	
-	
+
+
+
+
+
+
 
 	</div>
-	
+
 
 
 </div>
+
+<script>
+function unhide(){
+	var x = document.getElementById("answer");
+	x.style.display = "block";
+}
+
+function hide(){
+	var x = document.getElementById("answer");
+	x.style.display = "none";
+}
+</script>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
