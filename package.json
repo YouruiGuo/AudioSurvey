@@ -18,7 +18,7 @@
     "sails-hook-organics": "^0.14.5",
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
-    "sails-mysql": "^1.0.0"
+    "sails-mysql": "^3.0.0"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3",
